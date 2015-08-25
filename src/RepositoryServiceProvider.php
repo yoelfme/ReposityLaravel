@@ -1,10 +1,10 @@
 <?php
 
-namespace Yoelfme\PatternRepository;
+namespace Yoelfme\Repository;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
-class PatternRepositoryServiceProvider extends BaseServiceProvider
+class RepositoryServiceProvider extends BaseServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -23,7 +23,7 @@ class PatternRepositoryServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
-        $this->app->bind('Yoelfme\PatternRepository\Repository', function($app){
+        $this->app->bind('Yoelfme\Repository\Repository', function($app){
             return new Repository($app);
         });
     }

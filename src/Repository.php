@@ -1,6 +1,6 @@
 <?php
 
-namespace Yoelfme\PatternRepository;
+namespace Yoelfme\Repository;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -8,7 +8,7 @@ use Illuminate\Foundation\Application;
 
 /**
  * This is a class for implements a pattern repository in models Eloquent in Laravel
- * @package Yoelfme\PatternRepository
+ * @package Yoelfme\Repository
  */
 abstract class Repository implements RepositoryInterface
 {

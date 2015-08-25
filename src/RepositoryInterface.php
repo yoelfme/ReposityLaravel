@@ -1,5 +1,5 @@
 <?php
-namespace Yoelfme\PatternRepository;
+namespace Yoelfme\Repository;
 
 interface RepositoryInterface
 {
