@@ -2,7 +2,7 @@
 
 Installation: `composer require yoelfme/pattern-repository`
 
-This package is intended for implement the repository pattern for your projects in Laravel.
+This package is intended for implementing the repository pattern for your projects in Laravel.
 
 ## Contact
 

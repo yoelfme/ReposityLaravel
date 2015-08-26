@@ -118,7 +118,7 @@ abstract class Repository implements RepositoryInterface
      * @param array $columns
      * @param array $where
      */
-    public function allWhitRelations($columns = array('*'), $where = array())
+    public function allWithRelations($columns = array('*'), $where = array())
     {
         return $this->model->with($this->relations)->get($columns);
     }
