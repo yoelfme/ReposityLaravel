@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Application;
 
 /**
- * This is a class for implements a pattern repository in models Eloquent in Laravel
+ * This is a class for implementing a pattern repository in models Eloquent in Laravel
  * @package Yoelfme\Repository
  */
 abstract class Repository implements RepositoryInterface
@@ -222,6 +222,7 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
+     * Find record by ID with all relations
      * @param $id
      * @param array $columns
      * @return mixed
@@ -232,6 +233,7 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
+     * Find record by ID or return Exception
      * @param $id
      * @param array $columns
      * @return mixed
@@ -242,6 +244,7 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
+     * Find the first record by field
      * @param $field
      * @param $value
      * @param array $columns
@@ -253,6 +256,7 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
+     * Find the first record by field with you all relations
      * @param string $field
      * @param string $value
      * @param array $columns
@@ -264,6 +268,7 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
+     * Lists the field ID as key with other field as field
      * @param string $display
      */
     public function listsIdAnd($display)
@@ -272,6 +277,7 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
+     * Lists the field
      * @param string $value
      */
     public function listsField($value)
@@ -280,6 +286,7 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
+     * Lists the field by the key and value
      * @param string $key
      * @param string $value
      */
@@ -287,7 +294,6 @@ abstract class Repository implements RepositoryInterface
     {
         return $this->model->lists($value, $key);
     }
-
 
     /**
      * @param string $field

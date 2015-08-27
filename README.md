@@ -6,7 +6,7 @@ This package is intended for implementing the repository pattern for your projec
 
 ## Contact
 
-If you have any problems or suggestions, please open an issue :)
+If you have any problems or suggestions, please open an issue :grin:
 
 ## License
 
