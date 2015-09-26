@@ -17,6 +17,8 @@ interface RepositoryInterface
 
     public function paginate($perPage = 10, $columns = array('*'));
 
+    public function paginateWithAllRelations($perPage = 10, $columns = array('*'));
+
     public function create(array $data);
 
     public function update(array $data, $entity);

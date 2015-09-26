@@ -135,6 +135,17 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
+     * Return all rows paginate by value of $perPage with all relations
+     * @param int $perPage
+     * @param array $columns
+     * @return mixed
+     */
+    public function paginateWithAllRelations($perPage = 10, $columns = array('*'))
+    {
+        return $this->model->with($this->relations)->paginate($perPage, $columns);
+    }
+
+    /**
      * Create a record of model
      * @param array $data
      * @return mixed
