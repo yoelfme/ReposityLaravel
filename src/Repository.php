@@ -153,7 +153,7 @@ abstract class Repository implements RepositoryInterface
             $query->where($field, $value);
         }
 
-        return $query->get($columns);
+        return $query->paginate($perPage, $columns);
     }
 
 
