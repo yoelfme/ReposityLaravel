@@ -32,7 +32,7 @@ abstract class Repository implements RepositoryInterface
     function __construct(Application $app) {
         $this->app = $app;
         $this->makeModel();
-        $this->relations = $this->model->_relations;
+        $this->relations = ($this->model->_relations ? $this->model->_relations : [] );
     }
 
     /**
@@ -44,7 +44,7 @@ abstract class Repository implements RepositoryInterface
     /**
      * Function to create the instance of Eloquent Model
      * @return Model
-     * @throws Exception
+     * @throws \Exception
      */
     public function makeModel()
     {
@@ -52,7 +52,7 @@ abstract class Repository implements RepositoryInterface
         $model = $this->app->make($name_model);
 
         if(!$model instanceof Model) {
-            throw new Exception("Class { $name_model } must be an instance of Illuminate\\Database\\Eloquent\\Model");
+            throw new \Exception("Class { $name_model } must be an instance of Illuminate\\Database\\Eloquent\\Model");
         }
 
         return $this->model = $model;
@@ -110,15 +110,15 @@ abstract class Repository implements RepositoryInterface
     public function takeRandomByWithRelations($limit, $field, $value)
     {
         return $this->model->with($this->relations)->where($field, $value)
-    	     ->orderBy(DB::raw('RAND()'))->get()->take($limit);
+            ->orderBy(DB::raw('RAND()'))->get()->take($limit);
     }
 
     /**
      * Return all rows with relations
      * @param array $columns
-     * @param array $where
+     * @return mixed
      */
-    public function allWithRelations($columns = array('*'), $where = array())
+    public function allWithRelations($columns = array('*'))
     {
         return $this->model->with($this->relations)->get($columns);
     }
@@ -144,6 +144,18 @@ abstract class Repository implements RepositoryInterface
     {
         return $this->model->with($this->relations)->paginate($perPage, $columns);
     }
+
+    public function paginateByFiltersWithAllRelations($filters = array(), $perPage = 10, $columns = array('*'))
+    {
+        $query = $this->model->with($this->relations);
+
+        foreach($filters as $field => $value) {
+            $query->where($field, $value);
+        }
+
+        return $query->get($columns);
+    }
+
 
     /**
      * Create a record of model
@@ -185,11 +197,11 @@ abstract class Repository implements RepositoryInterface
         {
             if(is_numeric($entity))
             {
-              $this->model->destroy($entity);
+                $this->model->destroy($entity);
             }
             else {
-              $entity = $this->findOrFail($entity);
-              $entity->delete();
+                $entity = $this->findOrFail($entity);
+                $entity->delete();
             }
             return true;
         }

@@ -13,11 +13,13 @@ interface RepositoryInterface
 
     public function takeRandomByWithRelations($limit, $field, $value);
 
-    public function allWithRelations($columns = array('*'), $where);
+    public function allWithRelations($columns = array('*'));
 
     public function paginate($perPage = 10, $columns = array('*'));
 
     public function paginateWithAllRelations($perPage = 10, $columns = array('*'));
+
+    public function paginateByFiltersWithAllRelations($filters = array(), $perPage = 10, $columns = array('*'));
 
     public function create(array $data);
 
