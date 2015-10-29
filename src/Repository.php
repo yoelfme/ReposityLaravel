@@ -99,6 +99,15 @@ abstract class Repository implements RepositoryInterface
     {
         return $this->model->with($this->relations)->where($field, $value)->get()->take($limit);
     }
+    /**
+     * Return the number of rows given but filtered with relations
+     * @param $limit     
+     * @return mixed
+     */
+    public function takeWithRelations($limit)
+    {
+        return $this->model->with($this->relations)->get()->take($limit);
+    }
 
     /**
      * Return the number of random rows given but filtered the field by value given with relations only for MySQL Database
