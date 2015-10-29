@@ -11,6 +11,8 @@ interface RepositoryInterface
 
     public function takeByWithRelations($limit, $field, $value);
 
+    public function takeWithRelations($limit);
+
     public function takeRandomByWithRelations($limit, $field, $value);
 
     public function allWithRelations($columns = array('*'));
