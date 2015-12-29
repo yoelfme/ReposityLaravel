@@ -32,7 +32,7 @@ abstract class Repository implements RepositoryInterface
     function __construct(Application $app) {
         $this->app = $app;
         $this->makeModel();
-        $this->relations = ($this->model->_relations ? $this->model->_relations : [] );
+        $this->relations = ($this->model->_relations ? $this->model->_relations : []);
     }
 
     /**
@@ -51,7 +51,7 @@ abstract class Repository implements RepositoryInterface
         $name_model = $this->model();
         $model = $this->app->make($name_model);
 
-        if(!$model instanceof Model) {
+        if (!$model instanceof Model) {
             throw new \Exception("Class { $name_model } must be an instance of Illuminate\\Database\\Eloquent\\Model");
         }
 
@@ -134,7 +134,7 @@ abstract class Repository implements RepositoryInterface
     /**
      * Return all rows with relations
      * @param array $columns
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function allWithRelations($columns = array('*'))
     {
@@ -167,7 +167,7 @@ abstract class Repository implements RepositoryInterface
     {
         $query = $this->model->with($this->relations);
 
-        foreach($filters as $field => $value) {
+        foreach ($filters as $field => $value) {
             $query->where($field, $value);
         }
 
@@ -178,7 +178,7 @@ abstract class Repository implements RepositoryInterface
     /**
      * Create a record of model
      * @param array $data
-     * @return mixed
+     * @return Model
      */
     public function create(array $data)
     {
@@ -193,7 +193,7 @@ abstract class Repository implements RepositoryInterface
      */
     public function update(array $data, $entity)
     {
-        if(is_numeric($entity))
+        if (is_numeric($entity))
         {
             $entity = $this->findOrFail($entity);
         }
@@ -207,13 +207,13 @@ abstract class Repository implements RepositoryInterface
     /**
      * Delete a record by id of record or entity
      * @param $entity
-     * @return null
+     * @return boolean
      */
     public function delete($entity)
     {
         try
         {
-            if(is_numeric($entity))
+            if (is_numeric($entity))
             {
                 $this->model->destroy($entity);
             }
@@ -223,7 +223,7 @@ abstract class Repository implements RepositoryInterface
             }
             return true;
         }
-        catch(\Exception $e)
+        catch (\Exception $e)
         {
             return false;
         }
@@ -244,7 +244,7 @@ abstract class Repository implements RepositoryInterface
      * @param string $field
      * @param string $value
      * @param array $columns
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function whereWithRelations($field, $value, $columns = array('*'))
     {
