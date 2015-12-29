@@ -3,6 +3,8 @@ namespace Yoelfme\Repository;
 
 interface RepositoryInterface
 {
+    public function newQuery();
+
     public function all($columns = array('*'));
 
     public function take($limit);

@@ -59,6 +59,15 @@ abstract class Repository implements RepositoryInterface
     }
 
     /**
+     * Function to return an object of Query Builder
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function newQuery()
+    {
+        return $this->model->newQuery();
+    }
+
+    /**
      * Return all rows of model, select all columns default
      * @param array $columns
      */
